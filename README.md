@@ -7,7 +7,9 @@
 
 This provider consumes all data from a WFS service and makes it available as a FeatureService.
 A suitable WFS for this requires:
+
 1. JSON as allowed output format
+
 2. ImplementsResultPaging set to True 
 
 For example:
