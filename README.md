@@ -7,15 +7,13 @@
 
 This provider consumes all data from a WFS service and makes it available as a FeatureService.
 A suitable WFS for this requires:
--JSON as allowed output format
--ImplementsResultPaging set to True 
-
-
+1. JSON as allowed output format
+2. ImplementsResultPaging set to True 
 
 For example:
 http://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wfs?
 
-1: Register the url http://www.opengis.eu/geoservice/ with jsonurl by posting 
+1: Register the url http://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wfs? with jsonurl by posting 
 {"id":"bestuurlijkegrenzen","host":"http://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wfs?", "typename": "bestuurlijkegrenzen:gemeenten", "version": "1.0.0", "epsg": "EPSG:4326"} to http://localhost:1337/wfs
 
 2: Open the Featureservice using this url
