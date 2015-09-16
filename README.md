@@ -10,15 +10,17 @@ A suitable WFS for this requires:
 
 1. JSON as allowed output format
 
-2. ImplementsResultPaging set to True 
+2. ImplementsResultPaging set to True (preferred, it also works without paging in some cases)
 
 For example:
 http://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wfs?
 
-1: Register the url http://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wfs? with jsonurl by posting 
-{"id":"bestuurlijkegrenzen","host":"http://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wfs?", "typename": "bestuurlijkegrenzen:gemeenten", "version": "1.0.0", "epsg": "EPSG:4326"} to http://localhost:1337/wfs
+1: Register the url http://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wfs? with koop-wfs by posting 
+{"id":"bestuurlijkegrenzen","host":"http://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wfs?", "version": "1.0.0", "epsg": "EPSG:4326"} to http://localhost:1337/wfs/register
 
 2: Open the Featureservice using this url
 http://localhost:1337/wfs/bestuurlijkegrenzen/bestuurlijkegrenzen:gemeenten/FeatureServer/0
+
+
 
 This is still in development and therefore the way the WFS is registered is very likely to change.

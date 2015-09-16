@@ -15,7 +15,7 @@ var Controller = function( WFS, BaseController ){
     if ( !req.body.host ){
       res.status(400).send('Must provide a host to register'); 
     } else { 
-      WFS.register( req.body.id, req.body.host , req.body.version, req.body.epsg, function(err, id){
+      WFS.register( req.body.id, req.body.host , req.body.version, req.body.epsg, req.body.filter, function(err, id){
         if (err) {
           res.status(400).send( err );
         } else {
@@ -29,18 +29,32 @@ var Controller = function( WFS, BaseController ){
   controller.featureserver = function(req, res){
     var callback = req.query.callback, self = this;
     delete req.query.callback;
-
-    WFS.find(req.params.id, req.params.typename, req.query, function(err, data){
+	console.log(JSON.stringify(req.query) );
+	if(Object.keys(req.query).length===0||(Object.keys(req.query).length===1 && req.query.hasOwnProperty('f'))){
+		 WFS.prepFeatureserver(req.params.id, req.params.typename, {}, function(err, data){
       if (err) {
         res.send(err, 500);
       } else {
         // we remove the geometry if the "find" method already handles geo selection in the cache
         delete req.query.geometry;
+		
         // inherited logic for processing feature service requests 
-		debugger;
         controller.processFeatureServer( req, res, err, data, callback);
       }
     });
+	}
+	else{
+		WFS.find(req.params.id, req.params.typename, req.query, function(err, data){
+		  if (err) {
+			res.send(err, 500);
+		  } else {
+			// we remove the geometry if the "find" method already handles geo selection in the cache
+			delete req.query.geometry;			
+			// inherited logic for processing feature service requests 
+			controller.processFeatureServer( req, res, err, data, callback);
+		  }
+		});
+	}
   };
 
   // render templates and views 
