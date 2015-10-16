@@ -82,13 +82,16 @@ var WFS = function( koop ){
 		if(options && !options.hasOwnProperty("limit")){
 			options["limit"] =1000;
 		}
+		if (options && options.hasOwnProperty("resultOffset")&& !options.hasOwnProperty("offset")){
+			options.offset = options.resultOffset;
+		}
 		koop.Cache.get( type, dbId, options, function(err, entry ){
 			if ( err && err!=='Not Found'){
 				wfs.queryWFS( id, typename, options,callback );
 			}
 			else {
 				if (!entry && err==='Not Found'){entry = [{type: 'FeatureCollection',features: []}];}
-				callback( null, entry );//todo check wat er gebeurt als er geen entry is?
+				callback( null, entry );
 			}
 		});
 	}

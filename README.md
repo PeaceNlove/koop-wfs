@@ -21,6 +21,8 @@ http://geodata.nationaalgeoregister.nl/bestuurlijkegrenzen/wfs?
 2: Open the Featureservice using this url
 http://localhost:1337/wfs/bestuurlijkegrenzen/bestuurlijkegrenzen:gemeenten/FeatureServer/0
 
+This provider can work with datasets with up to 300,000 features. There is however one limitation: statistics will be calculated on the first 1000 features. I'm still working on a solution to calculate statistics on the whole dataset.
+You also need my modified pg-cache module which handles the spatial queries on the geometry column instead of the json if you would like to do WFS with large 
 
 
 This is still in development and therefore the way the WFS is registered is very likely to change.

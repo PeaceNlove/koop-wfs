@@ -7,6 +7,6 @@ module.exports = {
   'get /wfs': 'index',
   'get /wfs/:id/:typename/FeatureServer': 'featureserver',
   'get /wfs/:id/:typename/FeatureServer/:layer': 'featureserver',
-  'get /wfs/:id/:typename/FeatureServer/:layer/:method': 'featureserver',
+  'get /wfs/:id/:typename/FeatureServer/:layer/:method': 'featureserver'
   
 }
